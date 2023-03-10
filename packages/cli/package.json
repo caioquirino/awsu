@@ -1,0 +1,19 @@
+{
+  "name": "@awsu/cli",
+  "version": "0.0.1",
+  "description": "AWS Utilities CLI",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caioquirino/awsu/tree/main/packages/cli"
+  },
+  "keywords": [
+    "AWSU", "AWS", "CLI", "Typescript"
+  ],
+  "author": {
+    "name": "Caio Quirino"
+  },
+  "license": "Apache-2.0"
+}
