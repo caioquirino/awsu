@@ -41,6 +41,20 @@
       "options": {
         "preset": "conventional"
       }
+    },
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "node src/index.js",
+            "forwardAllArgs": true
+          }
+        ],
+        "cwd": "dist/packages/cli",
+        "parallel": false
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": ["scope:public", "type:cli", "target:all"]
