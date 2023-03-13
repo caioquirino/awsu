@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-npx nx run-many --target=version --all -- --releaseAs=minor
+versionBumpUp() {
+npx nx run-many --target=version --all -- --releaseAs=$1 --skipCommit=true
+git commit -m 'Release: Version bump-up'
 git push
+}
 
 publish() {
   local package=$1
@@ -12,5 +15,8 @@ publish() {
   cd -
 }
 
+# versionBumpUp "major"
+# versionBumpUp "minor"
+versionBumpUp "patch"
 publish core
 publish cli
