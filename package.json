@@ -1,6 +1,5 @@
 {
   "name": "awsu",
-  "version": "0.0.0",
   "description": "AWS Utilities and CLI helper commands",
   "publishConfig": {
     "access": "public"
