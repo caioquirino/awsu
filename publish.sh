@@ -16,7 +16,7 @@ publish() {
 }
 
 # versionBumpUp "major"
-# versionBumpUp "minor"
-versionBumpUp "patch"
+versionBumpUp "minor"
+# versionBumpUp "patch"
 publish core
 publish cli
