@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/caioquirino/awsu/tree/main/packages/cli"
   },
+  "bin": {
+    "awsu": "src/index.js"
+  },
   "keywords": [
     "AWSU",
     "AWS",

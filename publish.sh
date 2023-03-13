@@ -10,7 +10,7 @@ git push
 publish() {
   local package=$1
   npx nx build "${package}"
-  cd "packages/${package}"
+  cd "dist/packages/${package}"
   npm publish --access public
   cd -
 }
