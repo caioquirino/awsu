@@ -9,8 +9,10 @@ git push
 
 publish() {
   local package=$1
+  local publishedPackageName=$2
   npx nx build "${package}"
   cd "dist/packages/${package}"
+  npm pkg set "name"="${publishedPackageName}"
   npm publish --access public
   cd -
 }
@@ -18,5 +20,6 @@ publish() {
 # versionBumpUp "major"
 versionBumpUp "minor"
 # versionBumpUp "patch"
-publish core
-publish cli
+publish core "@awsu/core"
+publish cli "@awsu/cli"
+publish cli "awsu"
