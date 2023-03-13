@@ -1,3 +1,3 @@
-export function cli(): string {
-  return 'cli';
+export function cli(): void {
+  console.log('@awsu/cli')
 }
