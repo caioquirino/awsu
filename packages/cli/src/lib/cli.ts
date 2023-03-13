@@ -3,13 +3,16 @@ import {version} from '../../package.json'
 import {spawn} from 'child_process'
 
 const program = new Command()
-  .description('@awslu/cli')
+  .name("awsu-cli")
+  .description('AWS Utils CLI (awsu-cli)')
   .version(version || "Unknown")
   .option("-d, --debug", "Show debug logs")
   .option("-p, --profile <profile>", "AWS profile to use")
   .option("-r, --region <region>", "AWS region to use")
 
 program.command("exec")
+  .name("exec")
+  .description("Executes any command with injected AWS environment variables")
   .allowExcessArguments(true)
   .option("-e, --env-file <env-file>", "Append dotenv file to env vars")
   .arguments("<cmd>")
