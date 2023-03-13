@@ -1,5 +1,7 @@
 # Awsu
 
+fromNodeProviderChain() -> https://www.npmjs.com/package/@aws-sdk/credential-providers
+
 ## Running via npx
 
 Example: 

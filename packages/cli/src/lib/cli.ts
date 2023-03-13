@@ -24,7 +24,7 @@ program.command("exec")
     if(debugEnabled) {
       console.log("debugEnabled", debugEnabled)
       console.log("Command", command)
-      console.log("OarentOptions", parentOptions)
+      console.log("ParentOptions", parentOptions)
       console.log("Options", options)
       console.log("Args", commandObj.args)
     }
