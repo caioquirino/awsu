@@ -5,12 +5,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/caioquirino/awsu"
   },
   "keywords": [
-    "AWSU", "AWS", "CLI", "Typescript"
+    "AWSU",
+    "AWS",
+    "CLI",
+    "Typescript"
   ],
   "author": {
     "name": "Caio Quirino"
@@ -19,8 +23,8 @@
   "scripts": {
     "test:all": "nx affected:test --all --codeCoverage --skip-nx-cache"
   },
-  "private": true,
   "devDependencies": {
+    "@jscutlery/semver": "^2.30.1",
     "@nrwl/eslint-plugin-nx": "15.8.5",
     "@nrwl/jest": "15.8.5",
     "@nrwl/js": "15.8.5",

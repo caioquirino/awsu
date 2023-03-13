@@ -35,6 +35,12 @@
         "main": "packages/cli/src/index.ts",
         "assets": ["packages/cli/*.md"]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional"
+      }
     }
   },
   "tags": ["scope:public", "type:cli", "target:all"]

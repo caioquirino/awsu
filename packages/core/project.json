@@ -35,6 +35,12 @@
         "main": "packages/core/src/index.ts",
         "assets": ["packages/core/*.md"]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional"
+      }
     }
   },
   "tags": ["scope:public", "type:core", "target:all"]
