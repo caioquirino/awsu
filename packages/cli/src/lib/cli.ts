@@ -3,13 +3,29 @@ import {version} from '../../package.json'
 import {spawn} from 'child_process'
 
 const program = new Command()
-
-const execCommand = program.command("exec")
-execCommand.allowExcessArguments(true)
+  .description('@awslu/cli')
+  .version(version || "Unknown")
+  .option("-d, --debug", "Show debug logs")
   .option("-p, --profile <profile>", "AWS profile to use")
   .option("-r, --region <region>", "AWS region to use")
+
+program.command("exec")
+  .allowExcessArguments(true)
+  .option("-e, --env-file <env-file>", "Append dotenv file to env vars")
   .arguments("<cmd>")
   .action(async (command, options, commandObj) => {
+
+    const parentOptions = commandObj.parent.opts()
+    const debugEnabled: boolean = parentOptions.debug || false
+
+    if(debugEnabled) {
+      console.log("debugEnabled", debugEnabled)
+      console.log("Command", command)
+      console.log("OarentOptions", parentOptions)
+      console.log("Options", options)
+      console.log("Args", commandObj.args)
+    }
+
     const child = spawn(commandObj.args[0], commandObj.args.slice(1), {
       stdio: [process.stdin, process.stdout, process.stderr],
       detached: false,
@@ -23,8 +39,6 @@ execCommand.allowExcessArguments(true)
     });
   })
 
-program.description('@awslu/cli')
-program.version(version || "Unknown")
 
 export const cli = async (): Promise<void> => {
 
