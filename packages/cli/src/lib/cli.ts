@@ -13,7 +13,8 @@ execCommand.allowExcessArguments(true)
     const child = spawn(commandObj.args[0], commandObj.args.slice(1), {
       stdio: [process.stdin, process.stdout, process.stderr],
       detached: false,
-      shell: true
+      shell: true,
+      env: {"AWSU": "true"}
     })
     child.on('close', (code) => {
       if(code > 0) {
