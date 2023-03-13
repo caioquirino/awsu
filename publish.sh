@@ -2,8 +2,8 @@
 set -e
 
 versionBumpUp() {
-npx nx run-many --target=version --all -- --releaseAs=$1 --skipCommit=true
-git commit -m 'Release: Version bump-up'
+npx nx run-many --parallel=1 --target=version --all -- --releaseAs=$1 --skipCommit=true
+git commit -m 'Release: Version bump-up' packages/*/package.json packages/*/CHANGELOG.md
 git push
 }
 
