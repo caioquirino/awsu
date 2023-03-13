@@ -1,6 +1,6 @@
 {
   "name": "@awsu/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "AWS Core Utilities",
   "publishConfig": {
     "access": "public"
@@ -11,7 +11,10 @@
     "url": "https://github.com/caioquirino/awsu/tree/main/packages/core"
   },
   "keywords": [
-    "AWSU", "AWS", "CLI", "Typescript"
+    "AWSU",
+    "AWS",
+    "CLI",
+    "Typescript"
   ],
   "author": {
     "name": "Caio Quirino"
