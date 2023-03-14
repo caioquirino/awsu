@@ -47,11 +47,11 @@
       "options": {
         "commands": [
           {
-            "command": "node src/index.js",
+            "command": "ts-node-dev -r tsconfig-paths/register --project tsconfig.json src/index.ts",
             "forwardAllArgs": true
           }
         ],
-        "cwd": "dist/packages/cli",
+        "cwd": "packages/cli",
         "parallel": false
       },
       "dependsOn": ["build"]

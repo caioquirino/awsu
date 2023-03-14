@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-import { cli } from './lib/cli';
-
 export * from './lib/cli';
+import { cli } from './lib/cli';
 cli()

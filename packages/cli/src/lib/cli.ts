@@ -1,6 +1,8 @@
+import { CommandExecutor } from '@awsu/core';
 import { Command } from 'commander'
-import {version} from '../../package.json'
-import {spawn} from 'child_process'
+import { version } from '../../package.json'
+
+const commandExecutor = new CommandExecutor()
 
 const program = new Command()
   .name("awsu-cli")
@@ -29,17 +31,7 @@ program.command("exec")
       console.log("Args", commandObj.args)
     }
 
-    const child = spawn(commandObj.args[0], commandObj.args.slice(1), {
-      stdio: [process.stdin, process.stdout, process.stderr],
-      detached: false,
-      shell: true,
-      env: {"AWSU": "true"}
-    })
-    child.on('close', (code) => {
-      if(code > 0) {
-        process.exit(code)
-      }
-    });
+    await commandExecutor.executeCommand(commandObj.args[0], {"AWSU": "true"}, commandObj.args.slice(1))
   })
 
 

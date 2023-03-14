@@ -20,5 +20,14 @@
       "@awsu/core": ["packages/core/src/index.ts"]
     }
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "paths": {
+        "@awsu/cli": ["packages/cli/src/index.ts"],
+        "@awsu/core": ["packages/core/src/index.ts"]
+      }
+    }
+  },
   "exclude": ["node_modules", "tmp"]
 }
