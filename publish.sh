@@ -20,6 +20,8 @@ publish() {
 # versionBumpUp "major"
 versionBumpUp "minor"
 # versionBumpUp "patch"
+
 publish core "@awsu/core"
+cp -f README.md dist/packages/cli/README.md
 publish cli "@awsu/cli"
 publish cli "awsu-cli"
