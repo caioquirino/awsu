@@ -1,6 +1,6 @@
 {
   "name": "@awsu/cli",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "description": "AWS Utilities CLI",
   "publishConfig": {
     "access": "public"
