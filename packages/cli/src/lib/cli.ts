@@ -26,7 +26,7 @@ program.command("exec")
   .arguments("<cmd>")
   .action(async (command, options, commandObj) => {
 
-    const dotenvEnvVars = await dotenvLoader.load(options.envFile)
+    const dotenvEnvVars = options.envFile && await dotenvLoader.load(options.envFile) || {}
 
     const parentOptions = commandObj.parent.opts()
     const debugEnabled: boolean = parentOptions.debug || false

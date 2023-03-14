@@ -14,7 +14,7 @@ Variable expansion is working: https://www.npmjs.com/package/dotenv-expand
 
 Example: 
 ```
-npx awslu-cli exec -p profile -r eu-west-1 -- aws s3 ls
+npx awsu-cli exec -p profile -r eu-west-1 -- aws s3 ls
 ```
 
 ## Running locally
