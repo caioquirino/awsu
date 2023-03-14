@@ -1,8 +1,17 @@
 # Awsu
 
-fromNodeProviderChain() -> https://www.npmjs.com/package/@aws-sdk/credential-providers
+## Installation
+```shell
+npm i -g awsu-cli
+```
+## Usage
+```shell
+awsu exec -- aws s3 ls
+```
 
-## dotenv
+## Functionalities
+
+### dotenv integration
 Variable expansion is working: https://www.npmjs.com/package/dotenv-expand
 
 * `$KEY` will expand any env with the name KEY
@@ -12,16 +21,14 @@ Variable expansion is working: https://www.npmjs.com/package/dotenv-expand
 
 ## Running via npx
 
-Example: 
-```
+```shell
 npx awsu-cli exec -p profile -r eu-west-1 -- aws s3 ls
 ```
 
-## Running locally
+## Running locally (development)
 
 Clone the repo
 
-Example:
-```
+```shell
 npm run cli -- exec -p profile -r eu-west-1 -- aws s3 ls
 ```
