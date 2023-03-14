@@ -1,11 +1,12 @@
-import {AwsCredentialsService, CommandExecutor} from '@awsu/core'
+import {AwsCredentialsService, CommandExecutor, DotenvLoader} from '@awsu/core'
 import { Command } from 'commander'
 import { version } from '../../package.json'
-import * as log4js from "log4js";
+import * as log4js from "log4js"
 
 const logger = log4js.getLogger("awsu-cli")
 const commandExecutor = new CommandExecutor(logger, {debug: false})
 const credentialsService = new AwsCredentialsService(logger)
+const dotenvLoader = new DotenvLoader(logger)
 
 const program = new Command()
   .name("awsu-cli")
@@ -25,6 +26,8 @@ program.command("exec")
   .arguments("<cmd>")
   .action(async (command, options, commandObj) => {
 
+    const dotenvEnvVars = await dotenvLoader.load(options.envFile)
+
     const parentOptions = commandObj.parent.opts()
     const debugEnabled: boolean = parentOptions.debug || false
       logger.level = debugEnabled ? log4js.levels.DEBUG : log4js.levels.WARN
@@ -33,6 +36,7 @@ program.command("exec")
       logger.debug("ParentOptions", parentOptions)
       logger.debug("Options", options)
       logger.debug("Args", commandObj.args)
+      logger.debug("dotenvEnvVars", dotenvEnvVars)
 
     try {
       const credentials = await credentialsService.fetchCredentials()
@@ -41,15 +45,14 @@ program.command("exec")
         "AWS_SECRET_ACCESS_KEY": credentials.secretAccessKey,
         "AWS_SESSION_TOKEN": credentials.sessionToken,
       }
-      await commandExecutor.executeCommand(commandObj.args[0], commandObj.args.slice(1), {"AWSU": "true", ...credentialsEnvVars})
+      await commandExecutor.executeCommand(commandObj.args[0], commandObj.args.slice(1), {"AWSU": "true", ...dotenvEnvVars, ...credentialsEnvVars})
     } catch(error) {
       logger.debug(error)
-      process.exit(error.exitCode || 1)
+      return process.exit(error.exitCode || 1)
     }
   })
 
 
 export const cli = async (): Promise<void> => {
-
   await program.parseAsync()
 }
