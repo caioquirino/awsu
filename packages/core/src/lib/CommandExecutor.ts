@@ -1,4 +1,5 @@
 import {spawn} from 'child_process'
+import {Logger} from "log4js"
 
 type CommandExecutorConfig = {
   debug?: boolean
@@ -7,13 +8,12 @@ type CommandExecutorConfig = {
 }
 
 const configDefaults: CommandExecutorConfig = {
-  debug: false,
   useHostStdio: true,
   env: {}
 }
 export class CommandExecutor {
   private readonly config: CommandExecutorConfig
-  constructor(config: CommandExecutorConfig = configDefaults) {
+  constructor(private readonly logger: Logger, config: CommandExecutorConfig = configDefaults) {
     this.config = {...configDefaults, ...config}
   }
 
@@ -21,10 +21,7 @@ export class CommandExecutor {
     const mergedEnvVars = {...this.config.env, ...envVariables}
 
     return new Promise((resolve, reject) => {
-
-      if(this.config.debug) {
-        console.log("CommandExecutor.executeCommand input", {command, args, envVariables})
-      }
+      this.logger.debug("CommandExecutor.executeCommand input", {command, args, envVariables})
 
       const child = spawn(command, args, {
         stdio: this.config.useHostStdio ? [process.stdin, process.stdout, process.stderr] : 'pipe',

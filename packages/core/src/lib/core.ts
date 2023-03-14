@@ -1,2 +1,2 @@
 export * from './CommandExecutor'
-export * from './AwsCredentialsFetcher'
+export * from './AwsCredentialsService'
