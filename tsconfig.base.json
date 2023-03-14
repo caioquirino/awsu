@@ -22,11 +22,7 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs",
-      "paths": {
-        "@awsu/cli": ["packages/cli/src/index.ts"],
-        "@awsu/core": ["packages/core/src/index.ts"]
-      }
+      "module": "commonjs"
     }
   },
   "exclude": ["node_modules", "tmp"]

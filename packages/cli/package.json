@@ -11,7 +11,8 @@
     "url": "https://github.com/caioquirino/awsu/tree/main/packages/cli"
   },
   "bin": {
-    "awsu": "src/index.js"
+    "awsu": "src/index.js",
+    "awsu-cli": "src/index.js"
   },
   "keywords": [
     "AWSU",
