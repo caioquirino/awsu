@@ -2,6 +2,8 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.23.0](https://github.com/caioquirino/awsu/compare/cli-0.22.0...cli-0.23.0) (2023-03-14)
+
 ## [0.22.0](https://github.com/caioquirino/awsu/compare/cli-0.21.0...cli-0.22.0) (2023-03-14)
 
 ## [0.21.0](https://github.com/caioquirino/awsu/compare/cli-0.20.0...cli-0.21.0) (2023-03-14)
