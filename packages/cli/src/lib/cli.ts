@@ -25,7 +25,7 @@ const execCommand = new Command("exec")
   .description("executes any command with injected AWS environment variables")
   .allowExcessArguments(true)
   .option("-e, --env-file <env-file>", "append dotenv file to env vars")
-  .addArgument(new Argument("command", "command to cli with injected env vars"))
+  .addArgument(new Argument("command", "command to run with injected env vars"))
   .allowUnknownOption(true)
   .action(async (command, options, commandObj) => {
 
