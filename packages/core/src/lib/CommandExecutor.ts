@@ -2,7 +2,6 @@ import {spawn} from 'child_process'
 import {Logger} from "log4js"
 
 type CommandExecutorConfig = {
-  debug?: boolean
   useHostStdio?: boolean
   env?: NodeJS.ProcessEnv
 }
@@ -17,7 +16,7 @@ export class CommandExecutor {
     this.config = {...configDefaults, ...config}
   }
 
-  async executeCommand(command: string, args: string[], envVariables: NodeJS.ProcessEnv): Promise<void> {
+  async executeCommand(command: string, args: string[], envVariables: NodeJS.ProcessEnv = {}): Promise<void> {
     const mergedEnvVars = {...this.config.env, ...envVariables}
 
     return new Promise((resolve, reject) => {

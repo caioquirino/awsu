@@ -2,6 +2,8 @@ import { fromNodeProviderChain } from "@aws-sdk/credential-providers"
 import {loadSharedConfigFiles} from "@aws-sdk/shared-ini-file-loader"
 import type { AwsCredentialIdentity } from "@aws-sdk/types"
 import {Logger} from "log4js"
+import {getSsoSessionData} from "@aws-sdk/shared-ini-file-loader/dist-types/getSsoSessionData"
+import {CommandExecutor} from "./CommandExecutor"
 
 export type AwsProfile = {
   name: string
@@ -14,12 +16,12 @@ export type AwsProfile = {
   ssoSession?: string
 }
 
-// export type SSOSession = {
-
-// }
+export type FetchCredentialsConfig = {
+  profile?: string
+}
 
 export class AwsCredentialsService {
-  constructor(private readonly logger: Logger) {}
+  constructor(private readonly logger: Logger, private readonly commandExecutor: CommandExecutor) {}
   async listProfiles(): Promise<AwsProfile[]> {
     const configIniFile = await loadSharedConfigFiles()
     Object.entries(configIniFile).map(([key , value]) => {
@@ -39,8 +41,15 @@ export class AwsCredentialsService {
     return
   }
 
-  async fetchCredentials(): Promise<AwsCredentialIdentity> {
-    const credentialProvider = fromNodeProviderChain({})
+  async fetchCredentials(config: FetchCredentialsConfig): Promise<AwsCredentialIdentity> {
+    const credentialProvider = fromNodeProviderChain({
+      profile: config.profile
+    })
     return credentialProvider()
+  }
+
+  async awsSsoLogin(profile?: string): Promise<void> {
+    const extraArguments = profile ? ["--profile", profile] : []
+    return this.commandExecutor.executeCommand("aws", ["sso", "login", ...extraArguments])
   }
 }
