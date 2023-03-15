@@ -35,7 +35,7 @@ Usage: awsu exec [options] -- <command>
 executes any command with injected AWS environment variables
 
 Arguments:
-  command                    command to cli with injected env vars
+  command                    command to run with injected env vars
 
 Options:
   -e, --env-file <env-file>  append dotenv file to env vars
@@ -67,6 +67,7 @@ Clone the repo
 ```shell
 npm run cli -- exec -p default -r eu-west-1 -- aws s3 ls
 ```
+
 
 
 
