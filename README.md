@@ -12,9 +12,9 @@ awsu exec -- aws s3 ls
 <!-- START_DOC -->
 # Command help
 ```
-Usage: awsu-cli [options] [command]
+Usage: awsu [options] [command]
 
-AWS Utils CLI (awsu-cli)
+AWS Utils CLI (npm package awsu-cli)
 
 Options:
   -V, --version             output the version number
@@ -30,7 +30,7 @@ Commands:
 # Subcommands
 ## exec
 ```
-Usage: awsu-cli exec [options] -- <command>
+Usage: awsu exec [options] -- <command>
 
 executes any command with injected AWS environment variables
 
@@ -67,6 +67,7 @@ Clone the repo
 ```shell
 npm run cli -- exec -p default -r eu-west-1 -- aws s3 ls
 ```
+
 
 
 
