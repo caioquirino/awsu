@@ -11,6 +11,11 @@ publish() {
   local package=$1
   local publishedPackageName=$2
   npx nx build "${package}"
+
+  if [  "${package}" == "cli" ]; then
+    cp -f README.md dist/packages/cli/README.md
+  fi
+
   cd "dist/packages/${package}"
   npm pkg set "name"="${publishedPackageName}"
   npm publish --access public
@@ -22,6 +27,5 @@ versionBumpUp "minor"
 # versionBumpUp "patch"
 
 publish core "@awsu/core"
-cp -f README.md dist/packages/cli/README.md
 publish cli "@awsu/cli"
 publish cli "awsu-cli"

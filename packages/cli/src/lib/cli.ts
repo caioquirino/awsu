@@ -47,6 +47,7 @@ program.command("exec")
       }
       await commandExecutor.executeCommand(commandObj.args[0], commandObj.args.slice(1), {"AWSU": "true", ...dotenvEnvVars, ...credentialsEnvVars})
     } catch(error) {
+      logger.error(error.toString())
       logger.debug(error)
       return process.exit(error.exitCode || 1)
     }
