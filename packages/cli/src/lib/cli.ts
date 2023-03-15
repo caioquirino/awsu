@@ -45,6 +45,7 @@ program.command("exec")
     logger.debug("dotenvEnvVars", dotenvEnvVars)
 
     const profile: string | undefined = parentOptions.profile
+    const region: string | undefined = parentOptions.region
 
     try {
       let credentials: AwsCredentialIdentity
@@ -66,7 +67,12 @@ program.command("exec")
         "AWS_SECRET_ACCESS_KEY": credentials.secretAccessKey,
         "AWS_SESSION_TOKEN": credentials.sessionToken,
       }
-      await commandExecutor.executeCommand(commandObj.args[0], commandObj.args.slice(1), {"AWSU": "true", ...dotenvEnvVars, ...credentialsEnvVars})
+
+      const additionalEnvVars = {}
+      if(profile) additionalEnvVars["AWS_PROFILE"] = profile
+      if(region) additionalEnvVars["AWS_REGION"] = region
+
+      await commandExecutor.executeCommand(commandObj.args[0], commandObj.args.slice(1), {"AWSU": "true", ...dotenvEnvVars, ...credentialsEnvVars, ...additionalEnvVars})
     } catch(error) {
       logger.error(error.toString())
       logger.debug(error)
