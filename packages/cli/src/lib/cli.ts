@@ -1,5 +1,5 @@
 import {AwsCredentialsService, CommandExecutor, DotenvLoader} from '@awsu/core'
-import { Command } from 'commander'
+import {Argument, Command} from 'commander'
 import { version } from '../../package.json'
 import * as log4js from "log4js"
 import {AwsCredentialIdentity} from "@aws-sdk/types/dist-types/identity/AwsCredentialIdentity"
@@ -9,26 +9,23 @@ const commandExecutor = new CommandExecutor(logger)
 const credentialsService = new AwsCredentialsService(logger, commandExecutor)
 const dotenvLoader = new DotenvLoader(logger)
 
-const program = new Command()
+export const program = new Command()
   .name("awsu-cli")
   .description('AWS Utils CLI (awsu-cli)')
-  .version(version || "Unknown")
-  .option("-d, --debug", "Show debug logs")
+  .version(version || "unknown")
+  .option("-d, --debug", "show debug logs")
   .option("-p, --profile <profile>", "AWS profile to use")
   .option("-r, --region <region>", "AWS region to use")
   .allowUnknownOption(true)
 
-export const cli = async (): Promise<void> => {
-  await program.parseAsync()
-}
 
-
-program.command("exec")
+const execCommand = new Command("exec")
   .name("exec")
-  .description("Executes any command with injected AWS environment variables")
+  .usage("[options] -- <command>")
+  .description("executes any command with injected AWS environment variables")
   .allowExcessArguments(true)
-  .option("-e, --env-file <env-file>", "Append dotenv file to env vars")
-  .arguments("<cmd>")
+  .option("-e, --env-file <env-file>", "append dotenv file to env vars")
+  .addArgument(new Argument("command", "command to cli with injected env vars"))
   .allowUnknownOption(true)
   .action(async (command, options, commandObj) => {
 
@@ -79,3 +76,8 @@ program.command("exec")
       return process.exit(error.exitCode || 1)
     }
   })
+program.addCommand(execCommand, {isDefault: true})
+
+export const cli = async (): Promise<void> => {
+  await program.parseAsync()
+}
