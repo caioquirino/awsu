@@ -35,8 +35,8 @@ cd "dist/packages/cli"
 packageVersion=$(npm pkg get "version" | tr -d '"')
 cd - > /dev/null
 git tag -a "v${packageVersion}" -m "Release version ${packageVersion}"
-git tag -d "core-${packageVersion}"
-git tag -d "cli-${packageVersion}"
+#git tag -d "core-${packageVersion}"
+#git tag -d "cli-${packageVersion}"
 git push --follow-tags
 
 publish core "@awsu/core"
