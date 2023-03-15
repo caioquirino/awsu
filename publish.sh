@@ -26,14 +26,15 @@ publish() {
 versionBumpUp "minor"
 # versionBumpUp "patch"
 
+./generateDocs.sh
+git commit -m 'Release: Generate docs' README.md
+
+
+
 cd "dist/packages/cli"
 packageVersion=$(npm pkg get "version")
 cd - > /dev/null
 git tag -a "v${packageVersion}" -m "Release version ${packageVersion}"
-
-./generateDocs.sh
-git commit -m 'Release: Generate docs' README.md
-
 git push
 
 publish core "@awsu/core"
