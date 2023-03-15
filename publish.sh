@@ -26,6 +26,11 @@ publish() {
 versionBumpUp "minor"
 # versionBumpUp "patch"
 
+cd "dist/packages/cli"
+packageVersion=$(npm pkg get "version")
+cd - > /dev/null
+git tag -a "v${packageVersion}" -m "Release version ${packageVersion}"
+
 ./generateDocs.sh
 git commit -m 'Release: Generate docs' README.md
 
